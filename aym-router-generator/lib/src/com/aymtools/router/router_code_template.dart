@@ -28,7 +28,7 @@ class AYMRouter {
     Object arg = settings.arguments;
     try {
       RouterPageArg rp =
-          instance.checkOpenOrForwardPage(RouterPageArg(name, arg: arg));
+          instance.openOrForwardPage(RouterPageArg(name, arg: arg));
       return MaterialPageRoute(
           builder: (context) {
             return BeanFactory.createBean(rp.name, params: rp.arg);
@@ -42,11 +42,11 @@ class AYMRouter {
 
   bool canOpenPage(String pageUri, {Object arg}) {
     RouterPageArg rpa = RouterPageArg(pageUri, arg: arg);
-    RouterPageArg temp = checkOpenOrForwardPage(rpa);
+    RouterPageArg temp = openOrForwardPage(rpa);
     return temp == rpa && temp.name == rpa.name;
   }
 
-  RouterPageArg checkOpenOrForwardPage(RouterPageArg rpa) {
+  RouterPageArg openOrForwardPage(RouterPageArg rpa) {
     Uri u = Uri.parse(rpa.name);
     //绿色通道 不执行检查
     if (u.queryParameters.containsKey("useGreenChannel") &&
