@@ -1,0 +1,26 @@
+name: aym_router_generator
+description: AYMRouter generator Dart libraries.
+version: 1.0.0
+# homepage: https://www.example.com
+author: anyamming <anyaming0@gmail.com>
+
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+
+#dependencies:
+#  path: ^1.6.0
+
+dependencies:
+#  flutter:
+#    sdk: flutter
+  source_gen: ^0.9.4+4
+  mustache4dart: ^3.0.0-dev.1.0
+  aym_router:
+      path: ../aym-router
+  bean_factory_generator:
+    path: ../../flutter-bean-factory/bean-factory-generator
+
+dev_dependencies:
+
+#flutter:
+#  uses-material-design: true
