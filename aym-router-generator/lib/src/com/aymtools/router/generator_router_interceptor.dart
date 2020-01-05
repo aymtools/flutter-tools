@@ -1,10 +1,8 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:aym_router/aym_router.dart';
+import 'package:bean_factory_generator/bean_factory_generator.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:bean_factory_generator/bean_factory_generator.dart';
-
-import 'generator_router.dart';
 
 class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
   static Map<String, List<GBean>> interceptors = {};
@@ -24,8 +22,8 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    AYMRouterGenerator.routeImports
-        .forEach((p) => routeInterceptorImports[p.key] = p.value);
+//    AYMRouterGenerator.routeImports
+//        .forEach((p) => routeInterceptorImports[p.key] = p.value);
     BeanFactoryGenerator.beanMap.values
         .where((gb) => gb.annotation.instanceOf(_routerInterceptorAnnChecker))
         .where((gb) =>
@@ -40,6 +38,10 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
       interceptor.add(gb);
       routeInterceptorImports[gb.sourceUri] = gb.typeAsStr;
     });
+    interceptors.entries.forEach((e) {
+      print(
+          "RegExp:${e.key} size:${e.value.length} vale:${e.value.map((b) => b.typeName).toList()}");
+    });
 //    _interceptorRegExps.addEntries(newEntries)
     _interceptorRegExps.addEntries(
         interceptors.entries.map((e) => MapEntry(RegExp(e.key), e.value)));
@@ -52,9 +54,10 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
             _interceptorRegExps.entries
                 .where((me) => me.key.hasMatch(b.uri))
                 .map((f) => f.value)
-                .reduce((v, e) => v..addAll(e))))
+                .reduce((v, e) => List.from(v)..addAll(e))
+                .toSet()
+                .toList()))
         .map((e) => MapEntry(e.key.uri, e.value.map((v) => v.uri).toList())));
-
     routePageAndInterceptors.addEntries(BeanFactoryGenerator.beanMap.values
         .where((b) => b.annotation.instanceOf(_routerPageAnnChecker))
         .where((b) => !routePageAndInterceptors.containsKey(b.uri))
@@ -63,7 +66,9 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
             _interceptorRegExps.entries
                 .where((me) => me.key.hasMatch(b.uri))
                 .map((f) => f.value)
-                .reduce((v, e) => v..addAll(e))))
+                .reduce((v, e) => List.from(v)..addAll(e))
+                .toSet()
+                .toList()))
         .map((e) => MapEntry(e.key.uri, e.value.map((v) => v.uri).toList())));
     return null;
 //    return _genRouterInterceptor();

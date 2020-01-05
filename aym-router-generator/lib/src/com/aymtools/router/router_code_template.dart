@@ -68,7 +68,7 @@ class AYMRouter {
       interceptors = interceptorsMap.entries
           .where((e) => e.key.hasMatch(pageUri))
           .map((e) => e.value)
-          .reduce((v, e) => v..addAll(e))
+          .reduce((v, e) => List.from(v)..addAll(e))
           .map((s) => BeanFactory.createBean(s) as RouterInterceptorBase)
           .where((i) => i != null)
           .toList();

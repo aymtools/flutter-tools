@@ -24,7 +24,8 @@ class AYMRouterGenerator extends GeneratorForAnnotation<AYMRouter> {
       Element element, ConstantReader annotation, BuildStep buildStep) {
     String key = _getBeanFactoryDartFileUri(element, annotation);
     routeImports.add(Pair(key, ''));
-
+    print(
+        "size : ${AYMRouteInterceptorGenerator.interceptors["/"]?.map((b) => b.typeName)}");
     return render(codeRouterTemplate, <String, dynamic>{
       'imports': routeImports.map((item) => {
             'importsPath': "" == item.value
