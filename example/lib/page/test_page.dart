@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:aym_router/aym_router.dart';
 import 'package:example/entity/user.dart';
 
-@AYMRoutePage("router://example.router.aymtools.com/test1")
+@RoutePage("router://example.router.aymtools.com/test1")
 class TestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,12 @@ class TestPage extends StatelessWidget {
   }
 }
 
-@AYMRoutePage("router://example.router.aymtools.com/test2")
+@RoutePage("router://example.router.aymtools.com/test2")
 class Test2Page extends StatelessWidget {
   String content;
 
 //  @AYMRoutePageConstructor()
-  Test2Page({@AYMRoutePageParam("content") this.content});
+  Test2Page({@RoutePageParam("content") this.content});
 
   Test2Page.form(User user) {}
 
@@ -43,7 +43,7 @@ class Test2Page extends StatelessWidget {
   }
 }
 
-@AYMRoutePage("router://example.router.aymtools.com/test3")
+@RoutePage("router://example.router.aymtools.com/test3")
 class Test3Page extends StatelessWidget {
   String title;
   bool content;
@@ -51,21 +51,21 @@ class Test3Page extends StatelessWidget {
   double height;
   User user;
 
-  @AYMRoutePageConstructor(namedConstructor: "jsonTest")
-  Test3Page(@AYMRoutePageParam("titleRes") this.title,
-      {@AYMRoutePageParam("content") this.content, this.age, this.height});
+  @RoutePageConstructor(namedConstructor: "jsonTest")
+  Test3Page(@RoutePageParam("titleRes") this.title,
+      {@RoutePageParam("content") this.content, this.age, this.height});
 
-  @AYMRoutePageConstructor(namedConstructor: "json")
+  @RoutePageConstructor(namedConstructor: "json")
   Test3Page.formJson(String json) {
     title = "title form json";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "height")
+  @RoutePageConstructor(namedConstructor: "height")
   Test3Page.height(this.height) {
     title = "no title  used height";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "json2")
+  @RoutePageConstructor(namedConstructor: "json2")
   Test3Page.formJson2(User user) {
     title = "title form ${user.name}";
   }
@@ -74,39 +74,39 @@ class Test3Page extends StatelessWidget {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "formMap")
+  @RoutePageConstructor(namedConstructor: "formMap")
   Test3Page.formMap(Map<String, dynamic> map) {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "formMap2")
-  Test3Page.formMap2(@AYMRoutePageParam("map2") Map<String, String> map) {
+  @RoutePageConstructor(namedConstructor: "formMap2")
+  Test3Page.formMap2(@RoutePageParam("map2") Map<String, String> map) {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "formMap3")
+  @RoutePageConstructor(namedConstructor: "formMap3")
   Test3Page.formMap3(Map<String, dynamic> map, {this.content}) {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "formAll")
+  @RoutePageConstructor(namedConstructor: "formAll")
   Test3Page.formAll(this.content, Map<String, dynamic> map) {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor(namedConstructor: "form2Params")
+  @RoutePageConstructor(namedConstructor: "form2Params")
   Test3Page.form2Params(
       Map<String, dynamic> mapEntity, Map<String, dynamic> mapQuery) {
     title = "title form xml";
   }
 
-  @AYMRoutePageConstructor()
-  Test3Page.all(@AYMRoutePageParam("titleRes") this.title,
-      @AYMRoutePageParam("content") this.content, this.age, this.height);
+  @RoutePageConstructor()
+  Test3Page.all(@RoutePageParam("titleRes") this.title,
+      @RoutePageParam("content") this.content, this.age, this.height);
 
-  @AYMRoutePageConstructor()
-  Test3Page._pri(@AYMRoutePageParam("titleRes") this.title,
-      @AYMRoutePageParam("content") this.content, this.age, this.height);
+  @RoutePageConstructor()
+  Test3Page._pri(@RoutePageParam("titleRes") this.title,
+      @RoutePageParam("content") this.content, this.age, this.height);
 
 
   @override

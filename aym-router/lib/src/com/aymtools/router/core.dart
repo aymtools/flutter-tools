@@ -19,15 +19,15 @@ class AYMRouterLibExport extends FactoryLibExport {
 }
 
 /// 定义页面路由注解
-class AYMRoutePage extends Bean {
-  const AYMRoutePage(String uri) : super(uri: uri);
+class RoutePage extends Bean {
+  const RoutePage(String uri) : super(uri: uri);
 }
 
-/// 指定页面的构造函数 结合AYMRoutePageConstructorParam 来指定参数来源 不指定参数来源视为无参构造
+/// 指定页面的构造函数 结合RoutePageConstructorParam 来指定参数来源 不指定参数来源视为无参构造
 /// 只可以使用在命名构造函数上 使用在默认构造函数上时 keyInRouter指定 会生成两种构造路径
 /// "" 代表默认构造函数 就是非命名构造函数
-class AYMRoutePageConstructor extends BeanConstructor {
-  const AYMRoutePageConstructor({String namedConstructor = ""})
+class RoutePageConstructor extends BeanConstructor {
+  const RoutePageConstructor({String namedConstructor = ""})
       : super(namedConstructor: namedConstructor);
 }
 
@@ -37,21 +37,23 @@ class AYMRoutePageConstructor extends BeanConstructor {
 //}
 
 /// 每个页面都必须添加一个接受此参数的构造函数
-class AYMRoutePageParam extends BeanCreateParam {
-  const AYMRoutePageParam(String keyInMap) : super(keyInMap);
+class RoutePageParam extends BeanCreateParam {
+  const RoutePageParam(String keyInMap) : super(keyInMap);
 }
 
 /// 自定义路由页生成器 定义的类必须继承 RouterPageGeneratorBase
-class AYMRouterPageGenerator extends BeanCreator {
-  const AYMRouterPageGenerator(String uri) : super(uri);
+class RouterPageGenerator extends BeanCreator {
+  const RouterPageGenerator(String uri) : super(uri);
 }
 
 /// 定义路由的拦截器
-class AYMRouterInterceptor extends Bean {
-  const AYMRouterInterceptor(String uri)
+class RouterInterceptor extends Bean {
+  ///uri 正则表达式所匹配的url priority等级 默认100 从到到底排序 等级越高约优先执行
+  const RouterInterceptor(String uri, {int priority = 100})
       : super(
             uri: "",
             tag: uri,
+            ext: priority,
             keyGen: const KeyGenByClassName(),
             needAssignableFrom: const [RouterInterceptorBase]);
 }
@@ -94,7 +96,6 @@ class RouterPageArg {
 //        namedConstructorInRouter = "";
       }
     } else {
-      //如果是如 router://test.named 也可以尝试进行解析  但如 router://xxxx.test.named 为了安全起见 不解析 最好遵照uri的标准用法
       if (u.hasAuthority &&
           u.authority.indexOf(":") == -1 &&
           u.authority.indexOf(".") == u.authority.lastIndexOf(".")) {

@@ -65,10 +65,13 @@ class AYMRouter {
           .where((i) => i != null)
           .toList();
     } else {
-      interceptors = interceptorsMap.entries
+       List<Pair<String, int>> iss = List.from(interceptorsMap.entries
           .where((e) => e.key.hasMatch(pageUri))
           .map((e) => e.value)
-          .reduce((v, e) => List.from(v)..addAll(e))
+          .reduce((v, e) => List.from(v)..addAll(e)));
+      iss.sort((a, b) => b.value.compareTo(a.value));
+      interceptors = iss
+          .map((p) => p.key)
           .map((s) => BeanFactory.createBean(s) as RouterInterceptorBase)
           .where((i) => i != null)
           .toList();
@@ -83,7 +86,7 @@ class AYMRouter {
   }
   
   static Map<String,List<String>> pageRInterceptor = {{{pageRInterceptor}}};
-  static Map<RegExp, List<String>> interceptorsMap = {{{interceptors}}};
+  static Map<RegExp, List<Pair<String, int>>> interceptorsMap = {{{interceptors}}};
 
 }
 """;

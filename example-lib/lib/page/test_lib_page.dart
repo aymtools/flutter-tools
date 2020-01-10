@@ -2,7 +2,7 @@ import 'package:aym_router/aym_router.dart';
 import 'package:example_lib/entity/book.dart';
 import 'package:flutter/material.dart';
 
-@AYMRoutePage("router://example.router.aymtools.com/test10")
+@RoutePage("router://example.router.aymtools.com/test10")
 class Test10Page extends StatelessWidget {
   String title;
   bool content;

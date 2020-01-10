@@ -5,7 +5,7 @@ import 'package:example/entity/user.dart';
 import 'package:example_lib/entity/book.dart';
 
 
-@AYMRoutePage("router://example.router.aymtools.com/test5")
+@RoutePage("router://example.router.aymtools.com/test5")
 class TestPage extends StatelessWidget {
   String title;
   bool content;
@@ -13,7 +13,7 @@ class TestPage extends StatelessWidget {
   double height;
   User user;
 
-  TestPage({@AYMRoutePageParam('titleRes') this.title, this.content, this.age});
+  TestPage({@RoutePageParam('titleRes') this.title, this.content, this.age});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class TestPage extends StatelessWidget {
   }
 }
 
-@AYMRoutePage("/test6")
+@RoutePage("/test6")
 class Test6Page extends StatelessWidget {
   String title;
   bool content;
@@ -61,7 +61,7 @@ class Test6Page extends StatelessWidget {
   }
 }
 
-@AYMRoutePage("router://example.router.aymtools.com/test7")
+@RoutePage("router://example.router.aymtools.com/test7")
 class Test7Page extends StatelessWidget {
   String title;
 
@@ -84,7 +84,7 @@ class Test7Page extends StatelessWidget {
   }
 }
 
-@AYMRoutePage("router://example.router.aymtools.com/test8")
+@RoutePage("router://example.router.aymtools.com/test8")
 class Test8Page extends StatelessWidget {
   String title;
 
