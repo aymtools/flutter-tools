@@ -59,13 +59,25 @@ class AYMRouter {
   RouterPageArg _runRouterPageInterceptor(RouterPageArg rpa) {
     String pageUri = rpa.pageUri;
     List<RouterInterceptorBase> interceptors ;
+    interceptors = getRouterPageInterceptors(pageUri);
+    for (RouterInterceptorBase i in interceptors) {
+      RouterPageArg temp = i.onInterceptor(rpa);
+      if (temp != rpa || temp.name != rpa.name) {
+        return temp;
+      }
+    }
+    return rpa;
+  }
+  
+  List<RouterInterceptorBase> getRouterPageInterceptors(String pageUri) {
+    List<RouterInterceptorBase> interceptors;
     if (pageRInterceptor.containsKey(pageUri)) {
       interceptors = pageRInterceptor[pageUri]
           .map((s) => BeanFactory.createBean(s) as RouterInterceptorBase)
           .where((i) => i != null)
           .toList();
     } else {
-       List<Pair<String, int>> iss = List.from(interceptorsMap.entries
+      List<Pair<String, int>> iss = List.from(interceptorsMap.entries
           .where((e) => e.key.hasMatch(pageUri))
           .map((e) => e.value)
           .reduce((v, e) => List.from(v)..addAll(e)));
@@ -76,15 +88,9 @@ class AYMRouter {
           .where((i) => i != null)
           .toList();
     }
-    for (RouterInterceptorBase i in interceptors) {
-      RouterPageArg temp = i.onInterceptor(rpa);
-      if (temp != rpa || temp.name != rpa.name) {
-        return temp;
-      }
-    }
-    return rpa;
+    return interceptors;
   }
-  
+
   static Map<String,List<String>> pageRInterceptor = {{{pageRInterceptor}}};
   static Map<RegExp, List<Pair<String, int>>> interceptorsMap = {{{interceptors}}};
 

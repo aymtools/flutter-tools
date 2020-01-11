@@ -20,7 +20,7 @@ class AYMRouterLibExport extends FactoryLibExport {
 
 /// 定义页面路由注解
 class RoutePage extends Bean {
-  const RoutePage(String uri) : super(uri: uri);
+  const RoutePage(String uri) : super(key: uri);
 }
 
 /// 指定页面的构造函数 结合RoutePageConstructorParam 来指定参数来源 不指定参数来源视为无参构造
@@ -37,8 +37,8 @@ class RoutePageConstructor extends BeanConstructor {
 //}
 
 /// 每个页面都必须添加一个接受此参数的构造函数
-class RoutePageParam extends BeanCreateParam {
-  const RoutePageParam(String keyInMap) : super(keyInMap);
+class RoutePageParam extends BeanConstructorParam {
+  const RoutePageParam(String keyInMap) : super(keyInMap:keyInMap);
 }
 
 /// 自定义路由页生成器 定义的类必须继承 RouterPageGeneratorBase
@@ -51,11 +51,13 @@ class RouterInterceptor extends Bean {
   ///uri 正则表达式所匹配的url priority等级 默认100 从到到底排序 等级越高约优先执行
   const RouterInterceptor(String uri, {int priority = 100})
       : super(
-            uri: "",
-            tag: uri,
-            ext: priority,
-            keyGen: const KeyGenByClassName(),
-            needAssignableFrom: const [RouterInterceptorBase]);
+          key: "",
+          tag: uri,
+          ext: priority,
+          keyGen: const KeyGenByClassName(),
+          needAssignableFrom: const [RouterInterceptorBase],
+          scanConstructors: false,
+        );
 }
 
 ///自定义路由的生成器 不在提供路由的配置信息 自己完全自定义 一个uri对应一个生成策略
