@@ -43,7 +43,7 @@ class Test2Page extends StatelessWidget {
   }
 }
 
-@RoutePage("router://example.router.aymtools.com/test3")
+@RoutePage("router://example.router.aymtools.com/test3",scanConstructorsUsedBlackList: true)
 class Test3Page extends StatelessWidget {
   String title;
   bool content;
@@ -65,7 +65,8 @@ class Test3Page extends StatelessWidget {
     title = "no title  used height";
   }
 
-  @RoutePageConstructor(namedConstructor: "json2")
+//  @RoutePageConstructor(namedConstructor: "json2")
+  @RoutePageConstructorNot()
   Test3Page.formJson2(User user) {
     title = "title form ${user.name}";
   }

@@ -20,7 +20,10 @@ class AYMRouterLibExport extends FactoryLibExport {
 
 /// 定义页面路由注解
 class RoutePage extends Bean {
-  const RoutePage(String uri) : super(key: uri);
+  const RoutePage(String uri, {bool scanConstructorsUsedBlackList = false})
+      : super(
+            key: uri,
+            scanConstructorsUsedBlackList: scanConstructorsUsedBlackList);
 }
 
 /// 指定页面的构造函数 结合RoutePageConstructorParam 来指定参数来源 不指定参数来源视为无参构造
@@ -31,6 +34,10 @@ class RoutePageConstructor extends BeanConstructor {
       : super(namedConstructor: namedConstructor);
 }
 
+class RoutePageConstructorNot extends BeanConstructorNot {
+  const RoutePageConstructorNot() : super();
+}
+
 ///// 指定此构造函数不能通过路由来构造 但 对默认的构造函数无效 只可以使用在命名构造函数上
 //class AYMRouteNotPageConstructor {
 //  const AYMRouteNotPageConstructor();
@@ -38,7 +45,7 @@ class RoutePageConstructor extends BeanConstructor {
 
 /// 每个页面都必须添加一个接受此参数的构造函数
 class RoutePageParam extends BeanConstructorParam {
-  const RoutePageParam(String keyInMap) : super(keyInMap:keyInMap);
+  const RoutePageParam(String keyInMap) : super(keyInMap: keyInMap);
 }
 
 /// 自定义路由页生成器 定义的类必须继承 RouterPageGeneratorBase
