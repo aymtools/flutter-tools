@@ -31,7 +31,7 @@ class AYMRouter {
           instance.openOrForwardPage(RouterPageArg(name, arg: arg));
       return MaterialPageRoute(
           builder: (context) {
-            return BeanFactory.createBean(rp.name, params: rp.arg);
+            return BeanFactory.getBean(rp.name, params: rp.arg);
           },
           settings: settings);
     } catch (e) {
@@ -73,7 +73,7 @@ class AYMRouter {
     List<RouterInterceptorBase> interceptors;
     if (pageRInterceptor.containsKey(pageUri)) {
       interceptors = pageRInterceptor[pageUri]
-          .map((s) => BeanFactory.createBean(s) as RouterInterceptorBase)
+          .map((s) => BeanFactory.getBean(s) as RouterInterceptorBase)
           .where((i) => i != null)
           .toList();
     } else {
@@ -84,7 +84,7 @@ class AYMRouter {
       iss.sort((a, b) => b.value.compareTo(a.value));
       interceptors = iss
           .map((p) => p.key)
-          .map((s) => BeanFactory.createBean(s) as RouterInterceptorBase)
+          .map((s) => BeanFactory.getBean(s) as RouterInterceptorBase)
           .where((i) => i != null)
           .toList();
     }
@@ -130,7 +130,7 @@ class AYMRouter {
           instance._checkNeedRunRouterPageInterceptor(RouterPageArg(name, arg: arg));
       return MaterialPageRoute(
           builder: (context) {
-            return BeanFactory.createBean(rp.name, params: rp.arg);
+            return BeanFactory.getBean(rp.name, params: rp.arg);
           },
           settings: settings);
     } catch (e) {
