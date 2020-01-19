@@ -1,6 +1,7 @@
 import 'package:analyzer/dart/element/element.dart';
 import 'package:aym_router/aym_router.dart';
 import 'package:aym_router_generator/src/com/aymtools/router/router_code_template.dart';
+import 'package:bean_factory_generator/bean_factory_generator.dart';
 import 'package:build/build.dart';
 import 'package:mustache4dart/mustache4dart.dart';
 import 'package:source_gen/source_gen.dart';
@@ -22,7 +23,7 @@ class AYMRouterGenerator extends GeneratorForAnnotation<AYMRouter> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    String key = _getBeanFactoryDartFileUri(element, annotation);
+    String key = BeanFactoryGenerator.getBeanFactoryDartLibUri;
     routeImports.add(Pair(key, ''));
 //    print(
 //        "size : ${AYMRouteInterceptorGenerator.interceptors["/"]?.map((b) => b.typeName)}");
@@ -39,13 +40,5 @@ class AYMRouterGenerator extends GeneratorForAnnotation<AYMRouter> {
           MapEntry('RegExp(r"${k}")',
               '[${v.map((v) => 'Pair("${v.uri}",${v.ext})').reduce((v, e) => '$v,$e')}]')),
     });
-  }
-
-  String _getBeanFactoryDartFileUri(
-      Element element, ConstantReader annotation) {
-    String wUri = element.librarySource.uri.toString();
-    wUri = wUri.substring(0, wUri.lastIndexOf(".dart"));
-    wUri += ".bf.aymtools.dart";
-    return wUri;
   }
 }
