@@ -43,7 +43,8 @@ class Test2Page extends StatelessWidget {
   }
 }
 
-@RoutePage("router://example.router.aymtools.com/test3",scanConstructorsUsedBlackList: true)
+@RoutePage("router://example.router.aymtools.com/test3",
+    scanConstructorsUsedBlackList: true)
 class Test3Page extends StatelessWidget {
   String title;
   bool content;
@@ -108,7 +109,6 @@ class Test3Page extends StatelessWidget {
   @RoutePageConstructor()
   Test3Page._pri(@RoutePageParam("titleRes") this.title,
       @RoutePageParam("content") this.content, this.age, this.height);
-
 
   @override
   Widget build(BuildContext context) {

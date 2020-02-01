@@ -7,20 +7,15 @@ class GeneratorTestPage extends RouterPageGeneratorBase<TestPage> {
   @override
   TestPage genRouterPage(String namedConstructor,
       Map<String, dynamic> mapParams, dynamic objParam) {
-
-
     return null;
   }
 }
-
 
 @RouterPageGenerator("/test6")
 class GeneratorTest6Page extends RouterPageGeneratorBase<t2.Test6Page> {
   @override
   t2.Test6Page genRouterPage(String namedConstructor,
       Map<String, dynamic> mapParams, dynamic objParam) {
-
-
     return null;
   }
 }

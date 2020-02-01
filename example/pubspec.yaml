@@ -21,6 +21,8 @@ dependencies:
 
   aym_router:
     path: ../aym-router
+#  app_init:
+#    path: ../app-init
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,8 @@ dev_dependencies:
   build_runner: ^1.1.1
   aym_router_generator:
     path: ../aym-router-generator
+#  app_init_generator:
+#    path: ../app-init-generator
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

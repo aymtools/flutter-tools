@@ -1,20 +1,23 @@
-import 'dart:math';
-
 import 'package:bean_factory/bean_factory.dart';
 
+const List<String> _imports = [
+  'package:aym_router/aym_router.dart',
+  'package:flutter/material.dart',
+  'package:flutter/widgets.dart'
+];
+
 /// 定义路由注解
+/// 亦可以直接使用@BeanFactory，手动加入相关导入即可
 class AYMRouter extends Factory {
   /// otherRouter 表示存在在其他类库中的路由 路径 可以自动分模块引用 当当前模块优先级 最高
-  const AYMRouter({List<Type> otherRouter = const []})
-      : super(otherFactory: otherRouter, otherImports: const [
-          'package:aym_router/aym_router.dart',
-          'package:flutter/material.dart',
-          'package:flutter/widgets.dart'
-        ]);
+  const AYMRouter(
+      {List<Type> otherRouter = const [], List<String> otherImports = _imports})
+      : super(otherFactory: otherRouter, otherImports: otherImports);
 }
 
 /// 定义路由相关的类自动导出 就是写库 让库中的AYMRoutePage AYMRouterPageGenerator 自动生成lib文件
-class AYMRouterLibExport extends FactoryLibExport {
+/// 不建议继续使用，请使用@BeanFactoryLibExport
+class AYMRouterLibExport extends BeanFactoryLibExport {
   const AYMRouterLibExport();
 }
 
@@ -64,6 +67,8 @@ class RouterInterceptor extends Bean {
           keyGen: const KeyGenByClassName(),
           needAssignableFrom: const [RouterInterceptorBase],
           scanConstructors: false,
+          scanMethods: true,
+          scanFields: true,
         );
 }
 

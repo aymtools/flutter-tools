@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:example/entity/user.dart';
 import 'package:example/tools/http.dart';
+import 'package:flutter/material.dart';
 
 import 'router/route.router.aymtools.dart';
 

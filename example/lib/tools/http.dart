@@ -1,4 +1,1 @@
-
-
-void initApp(){
-}
+void initApp() {}

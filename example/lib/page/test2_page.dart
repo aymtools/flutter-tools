@@ -4,7 +4,6 @@ import 'package:example/entity/user.dart';
 
 import 'package:example_lib/entity/book.dart';
 
-
 @RoutePage("router://example.router.aymtools.com/test5")
 class TestPage extends StatelessWidget {
   String title;
@@ -23,14 +22,13 @@ class TestPage extends StatelessWidget {
       ),
       body: Center(
           child: GestureDetector(
-            onTap: () =>
-                Navigator.of(context).pushNamed(
-                    "router://example.router.aymtools.com/test3.json2",
-                    arguments: User("哈哈哈")),
-            child: Text(
-              '这是第五个界面的内容$title\ncontent:$content',
-            ),
-          )),
+        onTap: () => Navigator.of(context).pushNamed(
+            "router://example.router.aymtools.com/test3.json",
+            arguments: User("哈哈哈")),
+        child: Text(
+          '这是第五个界面的内容$title\ncontent:$content',
+        ),
+      )),
     );
   }
 }

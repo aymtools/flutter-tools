@@ -4,7 +4,7 @@ import 'package:bean_factory_generator/bean_factory_generator.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
 
-class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
+class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<Factory> {
   static Map<String, List<GBean>> interceptors = {};
   static Map<RegExp, List<GBean>> _interceptorRegExps = {};
 
@@ -52,15 +52,15 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<AYMRouter> {
         .where((bc) => bc.annotation.instanceOf(_routerPageCreatorAnnChecker))
         .map(
           (b) => Pair(
-              b,
-              _interceptorRegExps.entries
-                  .where((me) => me.key.hasMatch(b.uri))
-                  .map((f) => f.value)
-                  .reduce((v, e) => List.from(v)..addAll(e))
-                  .toSet()
-                  .toList()
+            b,
+            _interceptorRegExps.entries
+                .where((me) => me.key.hasMatch(b.uri))
+                .map((f) => f.value)
+                .reduce((v, e) => List.from(v)..addAll(e))
+                .toSet()
+                .toList()
                   ..sort((a, b) => b.ext.compareTo(a.ext)),
-              ),
+          ),
         )
         .map((e) => MapEntry(e.key.uri, e.value.map((v) => v.uri).toList())));
     routePageAndInterceptors.addEntries(BeanFactoryGenerator.beanMap.values
