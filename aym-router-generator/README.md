@@ -1,10 +1,10 @@
  AYMRouter generator Dart libraries.
  A flutter routing generator that automatically generates routing tables when compiling. 
- Need to use with aym_router.
+ Need to use with [aym_router](https://pub.dev/packages/aym_router).
  
  # 简介
  
- 一个以注解方式实现的路由映射解决方案，基于 bean_factory
+ 一个以注解方式实现的路由映射解决方案，基于 [bean_factory](https://pub.dev/packages/bean_factory) 与  [bean_factory_generator](https://pub.dev/packages/bean_factory_generator) 
  
  # 使用
  
