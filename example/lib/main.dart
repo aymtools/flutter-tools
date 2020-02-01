@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-//      navigatorKey: GlobalObjectKey(AYMNavigatorState()),
       title: 'Flutter Demo',
       initialRoute: "router://example.router.aymtools.com/test11",
       theme: ThemeData(

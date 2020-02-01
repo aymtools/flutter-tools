@@ -8,9 +8,9 @@ const List<String> _imports = [
 
 /// 定义路由注解
 /// 亦可以直接使用@BeanFactory，手动加入相关导入即可
-class AYMRouter extends Factory {
+class AYMRouterRoot extends Factory {
   /// otherRouter 表示存在在其他类库中的路由 路径 可以自动分模块引用 当当前模块优先级 最高
-  const AYMRouter(
+  const AYMRouterRoot(
       {List<Type> otherRouter = const [], List<String> otherImports = _imports})
       : super(otherFactory: otherRouter, otherImports: otherImports);
 }

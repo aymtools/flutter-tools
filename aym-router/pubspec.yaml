@@ -1,8 +1,7 @@
 name: aym_router
-description: AYMRouter Dart libraries.
+description: AYMRouter Dart libraries.A flutter routing generator that automatically generates routing tables when compiling. Need to use with aym_router_generator.
 version: 1.0.0
-# homepage: https://www.example.com
-author: anyamming <anyaming0@gmail.com>
+homepage: https://github.com/aymtools/flutter-tools
 
 environment:
   sdk: '>=2.5.0 <3.0.0'
@@ -11,8 +10,7 @@ environment:
 #  path: ^1.6.0
 
 dependencies:
-  bean_factory:
-    path: ../../flutter-bean-factory/bean-factory
+  bean_factory: ^1.0.0
 #  flutter:
 #    sdk: flutter
 
