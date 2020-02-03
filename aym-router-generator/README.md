@@ -21,7 +21,7 @@
       //必须包含name其他非必须
       A(this.name,{this.flag,this.age,this.height});
       //必须包含height 无需其他参数
-      A(this.height);
+      A.height(this.height);
     }
     ```
     更多用法请参考example内容
@@ -93,7 +93,7 @@
                     
                 //这是调用height参数
                 Navigator.of(context).pushNamed(
-                        "router://example.router.aymtools.com/test1",
+                        "router://example.router.aymtools.com/test1.height",
                         arguments: 185); 
                 //直接使用uri参数
                 Navigator.of(context).pushNamed(
