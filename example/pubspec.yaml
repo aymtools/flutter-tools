@@ -14,7 +14,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-  logger_flutter: ^0.7.1
+#  logger_flutter: ^0.7.1
 
   example_lib:
     path: ../example-lib

@@ -1,17 +1,54 @@
 # Read about `build.yaml` at https://pub.flutter-io.cn/packages/build_config
-# import指定了builder的位置，
-# builder_factories指定了builder的具体调用，
-# build_extensions指定了输入输入文件的格式匹配，
+targets:
+  $default:
+    builders:
+#      aym_router_generator|router_interceptor_builder:
+#        enabled: false
+#        generate_for:
+#          exclude: ['**.router.aymtools.dart']
+#      bean_factory_generator|bean_factory:
+#        enabled: false
+      aym_router_generator|router_builder:
+        enabled: false
+        options: { 'write': true }
+        generate_for:
+          exclude: ['**.router.aymtools.dart']
+  run_built_value:
+    dependencies:
+      - bean_factory_generator
+    builders:
+      aym_router_generator|router_builder:
+        enabled: true
+
 builders:
-  router_interceptor_builder:
-    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
-    builder_factories: ['routerInterceptorBuilder']
-    build_extensions: { '.dart': ['.interceptor.router.aymtools.dart'] }
-    auto_apply: root_package
-    build_to: source
+#  router_interceptor_builder:
+#    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
+#    builder_factories: ['routerInterceptorBuilder']
+#    build_extensions: { 'beanfactory.aymtools.dart': ['.interceptor.router.aymtools.dart'] }
+#    runs_before: ['aym_router_generator|router_builder']
+#    applies_builders: ['bean_factory_generator|bean_factory']
+#    auto_apply: root_package
+#    build_to: source
+#  router_builder:
+#    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
+#    builder_factories: ['routerBuilder']
+#    build_extensions: { 'beanfactory.aymtools.dart': ['.router.aymtools.dart'] }
+#    auto_apply: root_package
+#    build_to: source
+
   router_builder:
     import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
-    builder_factories: ['routerBuilder']
-    build_extensions: { '.dart': ['.router.aymtools.dart'] }
+    builder_factories: ['router']
+    build_extensions: { 'beanfactory.dart': ['.router.aymtools.dart'] }
+    applies_builders: ['bean_factory_generator|bean_factory']
+#    required_inputs: ['beanfactory.aymtools.dart']
     auto_apply: root_package
     build_to: source
+#post_process_builders:
+#  router_builder:
+#    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
+#    builder_factory: 'buildRouter'
+#    input_extensions: ['beanfactory.aymtools.dart']
+#    target: 'bean_factory_generator|bean_factory'
+#    auto_apply: root_package
+#    build_to: source

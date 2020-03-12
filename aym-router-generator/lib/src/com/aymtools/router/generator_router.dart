@@ -20,7 +20,7 @@ class AYMRouterGenerator extends GeneratorForAnnotation<Factory> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    String key = BeanFactoryGenerator.getBeanFactoryDartLibUri;
+    String key = BeanFactory.beanFactoryDartLibUri;
     routeImports.add(Pair(key, ''));
 //    print(
 //        "size : ${AYMRouteInterceptorGenerator.interceptors["/"]?.map((b) => b.typeName)}");

@@ -22,6 +22,8 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<Factory> {
   @override
   generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
+
+    print('RouteInterceptor Scaning');
 //    AYMRouterGenerator.routeImports
 //        .forEach((p) => routeInterceptorImports[p.key] = p.value);
     BeanFactoryGenerator.beanMap.values
