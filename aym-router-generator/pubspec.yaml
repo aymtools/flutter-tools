@@ -15,12 +15,16 @@ dependencies:
 #    sdk: flutter
   analyzer: ">=0.39.0 <0.40.0"
   build: ^1.0.0
+  dart_style: ^1.0.0
   source_gen: ^0.9.4+4
   mustache4dart: ^3.0.0-dev.1.0
+#  aym_router: ^1.1.0
   aym_router:
     path: ../aym-router
+#  bean_factory: ^1.1.2
   bean_factory:
     path: ../../flutter-bean-factory/bean-factory
+#  bean_factory_generator: ^1.1.2
   bean_factory_generator:
     path: ../../flutter-bean-factory/bean-factory-generator
 

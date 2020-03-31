@@ -10,6 +10,7 @@ environment:
 #  path: ^1.6.0
 
 dependencies:
+#  bean_factory: ^1.1.2
   bean_factory:
     path: ../../flutter-bean-factory/bean-factory
 #  flutter:
