@@ -40,8 +40,8 @@ builders:
     import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
     builder_factories: ['router']
     build_extensions: { 'beanfactory.dart': ['.router.aymtools.dart'] }
-    applies_builders: ['bean_factory_generator|bean_factory']
-#    required_inputs: ['beanfactory.aymtools.dart']
+#    applies_builders: ['bean_factory_generator|bean_factory']
+    required_inputs: ['beanfactory.aymtools.dart','.bf.aymtools.dart','.bf.dart','beanfactory.sys.aymtools.dart']
     auto_apply: root_package
     build_to: source
 #post_process_builders:

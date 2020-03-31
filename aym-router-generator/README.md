@@ -26,12 +26,13 @@
     ```
     更多用法请参考example内容
   
- 2. 使用 **@AYMRouterRoot** 注解 **你自己**的 router 类
+ 2. 在任意dart Source目录下创建beanfactory.dart并 **@AYMRouterRoot** 注解 **任意的**的 Class
     例：
  
     ```Dart
+    ///寄存文件必须为beanfactory.dart
     @AYMRouterRoot()
-    class MyRouter {}
+    class RouterFactory {}
     ```
  
  3. 在你的工作目录下运行如下命令:  

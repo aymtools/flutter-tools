@@ -30,7 +30,7 @@ class AYMRouteInterceptorGenerator extends GeneratorForAnnotation<Factory> {
         .where((gb) => gb.annotation.instanceOf(_routerInterceptorAnnChecker))
         .where((gb) =>
             gb.element != null &&
-            !_routerInterceptorChecker.isAssignableFrom(element))
+            !_routerInterceptorChecker.isAssignableFrom(gb.element))
         .forEach((gb) {
       List<GBean> interceptor = interceptors[gb.tag];
       if (interceptor == null) {
