@@ -1,5 +1,5 @@
 import 'package:aym_router_generator/aym_router_generator.dart';
-import 'package:aym_router_generator/src/com/aymtools/router/router_code_template.dart';
+import 'package:aym_router_generator/src/com/aymtools/router/code_template.dart';
 import 'package:aym_router_generator/src/com/aymtools/router/scan.dart';
 import 'package:bean_factory/bean_factory.dart';
 import 'package:mustache4dart/mustache4dart.dart';

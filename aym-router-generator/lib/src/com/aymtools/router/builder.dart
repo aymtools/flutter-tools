@@ -4,19 +4,9 @@ import 'package:aym_router_generator/aym_router_generator.dart';
 import 'package:aym_router_generator/src/com/aymtools/router/gen.dart';
 import 'package:aym_router_generator/src/com/aymtools/router/scan.dart';
 import 'package:build/build.dart';
-import 'package:source_gen/source_gen.dart';
 
-import 'generator_router.dart';
-import 'generator_router_interceptor.dart';
 import 'package:dart_style/dart_style.dart';
 
-Builder routerInterceptorBuilder(BuilderOptions options) =>
-    LibraryBuilder(AYMRouteInterceptorGenerator(),
-        generatedExtension: ".interceptor.router.aymtools.dart");
-
-Builder routerBuilder(BuilderOptions options) =>
-    LibraryBuilder(AYMRouterGenerator(),
-        generatedExtension: ".router.aymtools.dart");
 
 Builder router(BuilderOptions options) => Gen();
 

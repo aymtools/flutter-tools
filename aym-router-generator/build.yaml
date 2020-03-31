@@ -21,20 +21,6 @@ targets:
         enabled: true
 
 builders:
-#  router_interceptor_builder:
-#    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
-#    builder_factories: ['routerInterceptorBuilder']
-#    build_extensions: { 'beanfactory.aymtools.dart': ['.interceptor.router.aymtools.dart'] }
-#    runs_before: ['aym_router_generator|router_builder']
-#    applies_builders: ['bean_factory_generator|bean_factory']
-#    auto_apply: root_package
-#    build_to: source
-#  router_builder:
-#    import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
-#    builder_factories: ['routerBuilder']
-#    build_extensions: { 'beanfactory.aymtools.dart': ['.router.aymtools.dart'] }
-#    auto_apply: root_package
-#    build_to: source
 
   router_builder:
     import: 'package:aym_router_generator/src/com/aymtools/router/builder.dart'
