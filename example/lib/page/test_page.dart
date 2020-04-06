@@ -23,10 +23,7 @@ class TestPage extends StatelessWidget {
 class Test2Page extends StatelessWidget {
   String content;
 
-//  @AYMRoutePageConstructor()
   Test2Page({@RoutePageParam("content") this.content});
-
-  Test2Page.form(User user) {}
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,7 @@ List<Pair<String, String>> _routeImports = [
 ];
 
 String genRouter() {
-  _routeImports.add(Pair(BeanFactory.beanFactoryDartLibUri, ''));
+  _routeImports.add(Pair(BeanFactoryGenerator.beanFactoryDartLibUri, ''));
   return render(codeRouterTemplate, <String, dynamic>{
     'imports': _routeImports.map((item) => {
           'importsPath': "" == item.value

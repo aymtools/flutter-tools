@@ -1,0 +1,23 @@
+# Read about `build.yaml` at https://pub.flutter-io.cn/packages/build_config
+targets:
+  $default:
+    builders:
+      app_initializer_generator|app_initializer_builder:
+        enabled: false
+        options: { 'write': true }
+        generate_for:
+          exclude: ['**.appinit.aymtools.dart']
+  run_built_value:
+    dependencies:
+      - bean_factory_generator
+    builders:
+      app_initializer_generator|app_initializer_builder:
+        enabled: true
+builders:
+  app_initializer_builder:
+    import: 'package:app_initializer_generator/src/com/aymtools/appinitializer/builder.dart'
+    builder_factories: ['appInit']
+    build_extensions: { '.dart': ['.init.aymtools.dart'] }
+    required_inputs: ['beanfactory.aymtools.dart','.bf.aymtools.dart','.bf.dart','beanfactory.sys.aymtools.dart']
+    auto_apply: root_package
+    build_to: source

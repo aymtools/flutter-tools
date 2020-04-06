@@ -7,26 +7,25 @@ import 'package:example_lib/entity/book.dart';
 @RoutePage("router://example.router.aymtools.com/test5")
 class TestPage extends StatelessWidget {
   String title;
-  bool content;
+  bool sex;
   int age;
   double height;
-  User user;
 
-  TestPage({@RoutePageParam('titleRes') this.title, this.content, this.age});
+  TestPage({@RoutePageParam('titleRes') this.title, this.sex, this.age});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("第五个测试界面"),
+        title: Text("Router Demo"),
       ),
       body: Center(
           child: GestureDetector(
         onTap: () => Navigator.of(context).pushNamed(
-            "router://example.router.aymtools.com/test3.json",
-            arguments: User("哈哈哈")),
+          "/test6",
+        ),
         child: Text(
-          '这是第五个界面的内容$title\ncontent:$content',
+          '这是第五个界面的内容$title\ncontent:$sex',
         ),
       )),
     );
@@ -35,20 +34,15 @@ class TestPage extends StatelessWidget {
 
 @RoutePage("/test6")
 class Test6Page extends StatelessWidget {
-  String title;
-  bool content;
-  int age;
-  double height;
-  User user;
   Text cPage;
 
-  Test6Page({this.title, this.content, this.age, this.cPage});
+  Test6Page({this.cPage});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("第六个测试界面"),
+        title: Text("Router Demo"),
       ),
       body: Center(
         child: Text(
@@ -71,7 +65,7 @@ class Test7Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("第7个测试界面"),
+        title: Text("Router Demo"),
       ),
       body: Center(
         child: Text(
@@ -89,19 +83,19 @@ class Test8Page extends StatelessWidget {
   Book book;
 
 //  _Test8Page({this.title, this.book});
-  Test8Page._();
+  Test8Page._(this.title);
 
-  factory Test8Page(String name) => Test8Page._();
+  factory Test8Page(String name) => Test8Page._(name);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("第7个测试界面"),
+        title: Text("Router Demo"),
       ),
       body: Center(
         child: Text(
-          '这是第7个界面的内容',
+          '使用定义的factory创建的界面',
         ),
       ),
     );

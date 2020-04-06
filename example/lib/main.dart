@@ -1,12 +1,10 @@
-import 'package:example/tools/http.dart';
+import 'package:aym_router/aym_router.dart';
+import 'package:example/router/router.aymtools.dart';
 import 'package:flutter/material.dart';
-
-import 'router/router.aymtools.dart';
-
+import 'package:example/router/appinitializer.aymtools.dart';
 
 void main() {
-  initApp();
-  runApp(MyApp());
+  runApp(initApp(MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -15,12 +13,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      initialRoute: "router://example.router.aymtools.com/test11",
+      initialRoute:
+          "router://example.router.aymtools.com/home?content='欢迎测试使用！'",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
-      onGenerateRoute: AYMRouter.instance.onGenerateRoute,
+      onGenerateRoute: RouterInstance.instance.onGenerateRoute,
+      onUnknownRoute: RouterInstance.instance.onUnknownRoute,
 //      navigatorObservers: [AYMRouterNavigatorObserver()],
     );
   }

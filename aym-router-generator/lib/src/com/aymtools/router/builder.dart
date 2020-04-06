@@ -16,7 +16,7 @@ class Gen extends Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) async {
 //    print("Router gen start");
-    if (BeanFactory.isGenerated) {
+    if (BeanFactoryGenerator.isGenerated) {
       scanRouter();
 //      print("Router scan end");
 
@@ -50,7 +50,7 @@ class GenRouter extends PostProcessBuilder {
   @override
   FutureOr<void> build(PostProcessBuildStep buildStep) {
     print("Router gen start");
-    if (BeanFactory.isGenerated) {
+    if (BeanFactoryGenerator.isGenerated) {
       print("Router gen success!");
     }
 

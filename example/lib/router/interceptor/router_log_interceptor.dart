@@ -6,7 +6,7 @@ import '../../entity/user.dart';
 class RouterLogInterceptor extends RouterInterceptorBase {
   @override
   RouterPageArg onInterceptor(RouterPageArg rpa) {
-    print("start page : " + rpa.name);
+    print(" RouterLogInterceptor start page : " + rpa.name);
     return rpa;
   }
 }
@@ -15,7 +15,7 @@ class RouterLogInterceptor extends RouterInterceptorBase {
 class RouterLog2Interceptor extends RouterInterceptorBase {
   @override
   RouterPageArg onInterceptor(RouterPageArg rpa) {
-    print("start page : " + rpa.name);
+    print("RouterLog2Interceptor start page : " + rpa.name);
     return rpa;
   }
 }
@@ -36,7 +36,7 @@ class RouterLog3Interceptor extends RouterInterceptorBase {
 
   @override
   RouterPageArg onInterceptor(RouterPageArg rpa) {
-    print("start page : " + rpa.name);
+    print("RouterLog3Interceptor start page : " + rpa.name);
     return rpa;
   }
 }

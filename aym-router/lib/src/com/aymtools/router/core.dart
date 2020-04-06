@@ -74,59 +74,36 @@ class RouterInterceptor extends Bean {
 ///自定义路由的生成器 不在提供路由的配置信息 自己完全自定义 一个uri对应一个生成策略
 abstract class RouterPageGeneratorBase<Page>
     extends BeanCustomCreatorBase<Page> {
-  Page create(String namedConstructorInRouter, Map<String, dynamic> mapParams,
-          dynamic objParam) =>
-      genRouterPage(namedConstructorInRouter, mapParams, objParam);
+  Page genRouterPage(String namedConstructorInRouter, dynamic param,
+      Map<String, String> uriParams, bool canThrowException);
 
-  Page genRouterPage(String namedConstructorInRouter,
-      Map<String, dynamic> mapParams, dynamic objParam);
+  @override
+  Page create(String namedConstructorInUri, dynamic param,
+          Map<String, String> uriParams, bool canThrowException) =>
+      genRouterPage(namedConstructorInUri, param, uriParams, canThrowException);
 }
 
 class RouterPageArg {
-  String name;
-
-//  String pageUri;
+  String _name;
+  Uri _uri;
 
   Object arg;
 
-  RouterPageArg(this.name, {this.arg});
+  final bool isUseGreenChannel;
 
-  String get pageUri {
-    Uri u = Uri.parse(name);
-    String uri;
-    List<String> pathSegments = u.pathSegments;
-//    String namedConstructorInRouter = "";
-    if (pathSegments.length > 0) {
-      String lastPathS = pathSegments[pathSegments.length - 1];
-      int lastPathSF = lastPathS.lastIndexOf(".");
-      if (lastPathSF > -1) {
-//        namedConstructorInRouter = lastPathS.substring(lastPathSF + 1);
-        String lastPathRe = lastPathS.substring(0, lastPathSF);
-        pathSegments = List.from(pathSegments, growable: false);
-        pathSegments[pathSegments.length - 1] = lastPathRe;
-        u = u.replace(pathSegments: pathSegments);
-      } else {
-//        namedConstructorInRouter = "";
-      }
-    } else {
-      if (u.hasAuthority &&
-          u.authority.indexOf(":") == -1 &&
-          u.authority.indexOf(".") == u.authority.lastIndexOf(".")) {
-        String authority = u.authority;
-        int ni = authority.lastIndexOf(".");
-//        namedConstructorInRouter = ni > -1 ? authority.substring(ni + 1) : "";
-        String newAuthority = ni > -1 ? authority.substring(0, ni) : authority;
-        u = u.replace(host: newAuthority);
-      }
-    }
-    u = u.replace(queryParameters: {});
+  RouterPageArg(this._name, {this.arg, bool isUseGreenChannel})
+      : this.isUseGreenChannel = isUseGreenChannel ?? false,
+        this._uri = Uri.parse(_name);
 
-    uri = u.toString();
+  String get pageUri => BeanFactory.getBeanUri(uri);
 
-    if (uri.endsWith("?")) {
-      uri = uri.substring(0, uri.length - 1);
-    }
-    return uri;
+  Uri get uri => _uri;
+
+  String get name => _name;
+
+  set name(String value) {
+    this._name = name;
+    _uri = Uri.parse(_name);
   }
 }
 
