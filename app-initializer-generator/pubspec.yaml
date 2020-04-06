@@ -17,8 +17,8 @@ dependencies:
   mustache4dart: ^3.0.0-dev.1.0
   app_initializer:
       path: ../app-initializer
-  bean_factory_generator:
-    path: ../../flutter-bean-factory/bean-factory-generator
+  bean_factory_generator: ^1.2.0
+#    path: ../../flutter-bean-factory/bean-factory-generator
 
 dev_dependencies:
 
