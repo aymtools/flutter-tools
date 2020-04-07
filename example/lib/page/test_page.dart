@@ -21,7 +21,7 @@ class TestPage extends StatelessWidget {
 
 @RoutePage("router://example.router.aymtools.com/test2")
 class Test2Page extends StatelessWidget {
-  String content;
+  final String content;
 
   Test2Page({@RoutePageParam("content") this.content});
 
@@ -93,9 +93,8 @@ class Test3Page extends StatelessWidget {
     title = "title form xml";
   }
 
-  @RoutePageConstructor(namedConstructor: "form2Params")
-  Test3Page.form2Params(
-      Map<String, dynamic> mapEntity, Map<String, dynamic> mapQuery) {
+  @BeanConstructorFor2Params()
+  Test3Page.form2Params(dynamic mapEntity, Map<String, dynamic> mapQuery) {
     title = "title form xml";
   }
 

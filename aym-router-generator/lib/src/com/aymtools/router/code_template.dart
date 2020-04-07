@@ -23,11 +23,14 @@ class RouterInstance implements IRouter {
   RouteFactory onGenerateRoute = (RouteSettings settings) {
     String name = settings.name;
     Object arg = settings.arguments;
-    return MaterialPageRoute(
-        builder: (context) {
-          return Router.getPageS(name, arg: arg);
-        },
-        settings: settings);
+    Widget widget = Router.getPageS(name, arg: arg);
+    return widget == null
+        ? null
+        : MaterialPageRoute(
+            builder: (context) {
+              return widget;
+            },
+            settings: settings);
   };
 
   RouteFactory onUnknownRoute = (RouteSettings settings) {

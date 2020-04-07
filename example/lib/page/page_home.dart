@@ -1,4 +1,5 @@
 import 'package:aym_router/aym_router.dart';
+import 'package:example_lib/entity/book.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -6,19 +7,48 @@ import 'package:flutter/widgets.dart';
 class HomePage extends StatelessWidget {
   final String content;
 
+  final List<FunMenu> data = [];
+
   HomePage({this.content}) : super();
+
+  void _initFunMenu() {
+    data.add(FunMenu('正常无参的界面', 'router://example.router.aymtools.com/test1'));
+    data.add(FunMenu('uri无scheme无host即 /test6', '/test6'));
+    data.add(FunMenu('可传入一个String参数 content=hello',
+        'router://example.router.aymtools.com/test2',
+        args: 'hello'));
+    data.add(FunMenu(
+        '可传入各个基本类型的参数', 'router://example.router.aymtools.com/test5', args: {
+      'titleRes': 'String type title',
+      'sex': true,
+      'age': 18,
+      'height': 1.88
+    }));
+    data.add(FunMenu(
+        '传入自定义实体类Book', 'router://example.router.aymtools.com/test9',
+        args: Book('西游记', '罗贯中', 1.0)));
+    data.add(FunMenu(
+        '传入自定义实体类集合 List<Book>', 'router://example.router.aymtools.com/test7',
+        args: <Book>[
+          Book('西游记', '吴承恩', 1.0),
+          Book('三国演义', '罗贯中', 2.0),
+          Book('红楼梦', '曹雪芹', 3.0),
+          Book('水浒传', '施耐庵', 4.0)
+        ]));
+    data.add(FunMenu('传入自定义Widget 开启套娃模式', '/test6', args: Text('套娃的Text')));
+    data.add(FunMenu(
+        '使用定义的factory name=hello', 'router://example.router.aymtools.com/test8',
+        args: 'hello'));
+    data.add(FunMenu(
+        '跳入Lib的Page', 'router://example.router.aymtools.com/test10',
+        args: 'example'));
+    data.add(
+        FunMenu('最复杂的参数列表界面', 'router://example.router.aymtools.com/test3'));
+  }
 
   @override
   Widget build(BuildContext context) {
-    List<Pair<String, String>> data = [];
-    data.add(Pair('正常无参的界面', 'router://example.router.aymtools.com/test1'));
-    data.add(Pair('uri无scheme无host即 /test6', '/test6'));
-    data.add(
-        Pair('可传入一个String参数', 'router://example.router.aymtools.com/test2'));
-    data.add(
-        Pair('可传入各个基本类型的参数', 'router://example.router.aymtools.com/test5'));
-    data.add(Pair('最复杂的参数列表界面', 'router://example.router.aymtools.com/test3'));
-
+    _initFunMenu();
     return Scaffold(
       appBar: AppBar(
         title: Text("这里是主界面"),
@@ -38,9 +68,10 @@ class HomePage extends StatelessWidget {
                         ),
                     itemCount: data.length,
                     itemBuilder: (context, index) => RaisedButton(
-                          child: Text('${data[index].key}'),
-                          onPressed: () => Navigator.of(context)
-                              .pushNamed(data[index].value),
+                          child: Text('${data[index].title}'),
+                          onPressed: () => Navigator.of(context).pushNamed(
+                              data[index].uri,
+                              arguments: data[index].args),
                         )),
               ),
             ],
@@ -49,4 +80,12 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+}
+
+class FunMenu {
+  final String title;
+  final String uri;
+  final dynamic args;
+
+  FunMenu(this.title, this.uri, {this.args});
 }
