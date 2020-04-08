@@ -4,7 +4,6 @@ import 'package:app_initializer_generator/src/com/aymtools/appinitializer/gener.
 import 'package:app_initializer_generator/src/com/aymtools/appinitializer/scnner.dart';
 import 'package:bean_factory_generator/bean_factory_generator.dart';
 import 'package:build/build.dart';
-import 'package:source_gen/source_gen.dart';
 
 import 'package:dart_style/dart_style.dart';
 
